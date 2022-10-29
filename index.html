@@ -13,7 +13,7 @@
     ></script>
   </head>
   <body>
-    <h1>景點 - 觀光資訊資料庫</h1>
+    <h1>景點觀光資訊的範例</h1>
     <div class="list">
       <ul></ul>
     </div>
@@ -31,7 +31,7 @@
           //console.log(res); //抓到資料
           //console.log(res.data.XML_Head.Infos.Info); //抓到要顯示資料的陣列
           dataStore = res.data.XML_Head.Infos.Info; //把資料裝填
-          renderData(); //執行取得資料後要做的事
+          renderData(); //執行 render 的函式
         })
         .catch((err) => {
           console.log(err.response);
