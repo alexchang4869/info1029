@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>串接後渲染</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"
+      integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <h1></h1>
+    <script>
+      const CORS = "https://cors-anywhere.herokuapp.com/";
+      const dataUrl =
+        "https://gis.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json";
+
+      axios
+        .get(CORS + dataUrl)
+        .then((res) => {
+          console.log(res);
+          console.log(res.data.XML_Head.Infos.Info); //抓到資料的陣列
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    </script>
+  </body>
+</html>
