@@ -13,7 +13,11 @@
     ></script>
   </head>
   <body>
-    <h1></h1>
+    <h1>景點 - 觀光資訊資料庫</h1>
+    <div class="list">
+      <ul></ul>
+    </div>
+
     <script>
       const CORS = "https://cors-anywhere.herokuapp.com/";
       const dataUrl =
@@ -35,7 +39,18 @@
 
       function renderData() {
         console.log(`進入renderData函式`);
-        console.log(dataStore);
+        console.log(dataStore[0].Name);
+
+        const list = document.querySelector(".list");
+        //list.innerHTML = `<span>第一個景點是：${dataStore[0].Name}</span>`;
+
+        let strList = "";
+        dataStore.forEach((item, i) => {
+          if (i < 10) {
+            strList += `<li>${i + 1}.&nbsp;${item.Name}</li>`;
+          }
+        });
+        list.childNodes[1].innerHTML = strList;
       }
     </script>
   </body>
