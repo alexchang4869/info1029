@@ -19,15 +19,24 @@
       const dataUrl =
         "https://gis.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json";
 
+      let dataStore = []; //要用 let 宣告裝填資料
+
       axios
         .get(CORS + dataUrl)
         .then((res) => {
-          console.log(res);
-          console.log(res.data.XML_Head.Infos.Info); //抓到資料的陣列
+          console.log(res); //抓到資料
+          console.log(res.data.XML_Head.Infos.Info); //抓到要顯示資料的陣列
+          dataStore = res.data.XML_Head.Infos.Info; //把資料裝填
+          renderData(); //執行取得資料後要做的事
         })
         .catch((err) => {
           console.log(err.response);
         });
+
+      function renderData() {
+        console.log(`進入renderData函式`);
+        console.log(dataStore);
+      }
     </script>
   </body>
 </html>
