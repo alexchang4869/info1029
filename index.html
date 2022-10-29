@@ -19,17 +19,17 @@
     </div>
 
     <script>
-      const CORS = "https://cors-anywhere.herokuapp.com/";
+      const CORS = "https://cors-anywhere.herokuapp.com/"; //跨來源請求
       const dataUrl =
-        "https://gis.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json";
+        "https://gis.taiwan.net.tw/XMLReleaseALL_public/scenic_spot_C_f.json"; //政府開放資料平台的資料檔
 
       let dataStore = []; //要用 let 宣告裝填資料
 
       axios
         .get(CORS + dataUrl)
         .then((res) => {
-          console.log(res); //抓到資料
-          console.log(res.data.XML_Head.Infos.Info); //抓到要顯示資料的陣列
+          //console.log(res); //抓到資料
+          //console.log(res.data.XML_Head.Infos.Info); //抓到要顯示資料的陣列
           dataStore = res.data.XML_Head.Infos.Info; //把資料裝填
           renderData(); //執行取得資料後要做的事
         })
@@ -38,18 +38,19 @@
         });
 
       function renderData() {
-        console.log(`進入renderData函式`);
-        console.log(dataStore[0].Name);
+        const list = document.querySelector(".list"); //抓到 HTML 節點
+        list.innerHTML = `<span>第一個景點是：${dataStore[0].Name}</span>`; //用 innerHTML 渲染 HTML 頁籤
 
-        const list = document.querySelector(".list");
-        //list.innerHTML = `<span>第一個景點是：${dataStore[0].Name}</span>`;
-
-        let strList = "";
+        let strList = ""; //把資料組成字串，再渲染
+        //用 forEach 把每筆資料帶出來
         dataStore.forEach((item, i) => {
+          //只要取前 10 筆
           if (i < 10) {
+            //取的資料用字串相加，混用變數
             strList += `<li>${i + 1}.&nbsp;${item.Name}</li>`;
           }
         });
+        //用 innerHTML 渲染 HTML 頁籤
         list.childNodes[1].innerHTML = strList;
       }
     </script>
